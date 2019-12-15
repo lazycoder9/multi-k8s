@@ -15,6 +15,12 @@ jobs:
           service_account_email: ${{ secrets.GKE_EMAIL }}
           service_account_key: ${{ secrets.GKE_KEY }}
 
+      - name: Config GCloud
+        run: |
+          gcloud config set project multi-k8s-262117
+          gcloud config set compute/zone europe-north1-a
+          gcloud container clusters get-credentials multi-cluster
+
       - name: Login to Docker
         run: docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
 
