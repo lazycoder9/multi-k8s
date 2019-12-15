@@ -4,6 +4,9 @@ on:
     branches:
       - master
 
+env:
+  SHA: ${{ github.sha }}
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -28,3 +31,6 @@ jobs:
         run: |
           docker build -t lazycoder/react-test -f ./client/Dockerfile.dev ./client
           docker run lazycoder/react-test yarn test --coverage
+
+      - name: Deploy
+        run: ./deploy.sh
