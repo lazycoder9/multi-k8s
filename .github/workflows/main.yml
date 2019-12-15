@@ -14,5 +14,9 @@ jobs:
           version: '270.0.0'
           service_account_email: ${{ secrets.GKE_EMAIL }}
           service_account_key: ${{ secrets.GKE_KEY }}
-      - name: Check auth
-        run: gcloud auth list
+
+      - name: Login to Docker
+        run: docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Check docker auth
+        run: docker login
