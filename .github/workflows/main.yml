@@ -31,6 +31,7 @@ jobs:
     needs: configure
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - name: Build and test client
         run: |
           docker build -t lazycoder/react-test -f ./client/Dockerfile.dev ./client
